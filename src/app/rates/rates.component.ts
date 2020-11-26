@@ -49,7 +49,6 @@ export class RatesComponent implements OnInit {
 
   onSelect({ selected } : { selected:any }) {
     console.log('Select Event', selected, this.selected);
-    // console.log(this.coins.find(function(e){ return e.name == 'Aave' }));
     this.selected.splice(0, this.selected.length);
     this.selected.push(...selected);
     this.fav = this.selected;
