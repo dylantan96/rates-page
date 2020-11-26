@@ -1,0 +1,102 @@
+<section class="section">
+  <div class="container has-text-centered mt-3 mb-5">
+    <h1 class="title pb-3">Welcome to the Rates page</h1>
+    <p class="subtitle is-size-6 pb-3">
+      Pardon the mess. This was done in <strong>Angular</strong>!
+    </p>
+  </div>
+  <div class="container">
+    <article id="favouriteCoins" class="panel is-info">
+        <p class="panel-heading">
+          Favourites <small>({{ selected?.length }})</small>
+        </p>
+        <a class="panel-block">
+          <div class="container columns is-centered has-text-left has-text-weight-semibold px-3 py-1 is-mobile is-size-7">
+            <div class="column is-one-quarter">
+              No.
+            </div>
+            <div class="column is-one-quarter">
+              Name
+            </div>
+            <div class="column is-one-quarter">
+              Symbol
+            </div>
+            <div class="column is-one-quarter">
+              Rate
+            </div>
+          </div>
+        </a>
+        <div class="panel-block__container" *ngIf="selected.length != 0">
+        <a class="panel-block" *ngFor="let sel of selected; let i = index">
+          <div class="container columns is-centered has-text-left  px-3 py-1 is-mobile is-size-7">
+            <div class="column is-one-quarter">
+              {{ i + 1 }}
+            </div>
+            <div class="column is-one-quarter">
+              {{ sel.name }}
+            </div>
+            <div class="column is-one-quarter">
+              {{ sel.symbol }}
+            </div>
+            <div class="column is-one-quarter">
+              {{ sel.rate }}
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="panel-block__container --empty" *ngIf="selected.length === 0">
+        <p class="is-size-6">No data to display yet...</p>
+      </div>
+      </article>
+
+    <input
+      id="searchFilter"
+      type="text"
+      placeholder="Type to filter the name column..."
+      (keyup)="updateFilter($event)"
+    />
+    <ngx-datatable
+      #myTable
+      class="material fullscreen"
+      [rows]="coins"
+      [columnMode]="'force'"
+      [headerHeight]="50"
+      [footerHeight]="50"
+      [rowHeight]="50"
+      [scrollbarH]="true"
+      [limit]="10"
+      [selected]="selected"
+      [selectionType]="SelectionType.checkbox"
+      [sorts]="[{ prop: 'name', dir: 'asc' }]"
+      (select)="onSelect($event)"
+    >
+      <ngx-datatable-column
+        name="Star"
+        [width]="30"
+        [sortable]="false"
+        [headerCheckboxable]="true"
+        [checkboxable]="true"
+        [canAutoResize]="true"
+        [resizeable]="true"
+      >
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Name" prop="name">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row.name }}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Symbol" prop="symbol">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row.symbol }}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <ngx-datatable-column name="Rate" prop="rate">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row.rate }}
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </div>
+</section>

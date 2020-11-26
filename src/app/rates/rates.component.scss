@@ -1,0 +1,32 @@
+#favouriteCoins {
+    height: 250px;
+    overflow: hidden;
+
+    & .panel-block__container {
+        overflow-y: scroll;
+        height: 60%;
+
+        &.\--empty {
+            text-align: center;
+            position: relative;
+            
+            & p {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                color: #c1c1c1;
+            }
+        }
+    }
+}
+
+#searchFilter {
+    font-size: 14px;
+    display: block;
+    background: transparent;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #5264ae;
+    margin: 15px 0;
+}
